@@ -9,6 +9,8 @@ import { LinearGradient } from 'expo-linear-gradient';
 import {useRouter} from 'expo-router'
 
 export default function BodyParts() {
+  const router = useRouter()
+
   return (
     <View className="mx-4">
       <Text 
@@ -24,18 +26,17 @@ export default function BodyParts() {
         showsVerticalScrollIndicator={true}
         contentContainerStyle={{paddingBottom: 50, paddingTop: 20}}
         columnWrapperStyle={{justifyContent: 'space-between'}}
-        renderItem={({item, index}) => <BodyPartCard index={index} item={item} />}
+        renderItem={({item, index}) => <BodyPartCard index={index} item={item} router={router} />}
       />
     </View>
   )
 }
 
-const BodyPartCard = ({item, index}) => {
-    const router = useRouter()
+const BodyPartCard = ({item, index, router}) => {
     return(
         <View>
             <TouchableOpacity
-                onPress={() => router}
+                onPress={() => router.push({pathname: '/exercises', params: item})}
                 style={{width: wp(44), height: wp(52)}}
                 className="flex justify-end p-4 mb-4"
             >
@@ -52,6 +53,12 @@ const BodyPartCard = ({item, index}) => {
                     end={{x: 0.5, y:1}}
                     className="absolute bottom-0 rounded-b-[35px]"
                 />
+                <Text 
+                  className="font-semibold text-center text-white tracking-wide"
+                  style={{fontSize: hp(2.3)}}
+                >
+                  {item.name}
+                </Text>
             </TouchableOpacity>
         </View>
     )

@@ -36,6 +36,12 @@ export default function Index() {
           >
             Best <Text className="text-rose-500">Workouts</Text>
           </Text>
+          <Text
+            style={{ fontSize: hp(5) }}
+            className="text-white font-bold tracking-wide"
+          >
+            For you
+          </Text>
         </Animated.View>
         <Animated.View entering={FadeInDown.delay(200).springify()}>
           <TouchableOpacity
