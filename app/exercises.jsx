@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView, StatusBar, Image } from "react-native";
+import { View, Text, TouchableOpacity, StatusBar, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { fetchExercisesByBodyPart } from "../api/exerciseDB";
@@ -9,12 +9,13 @@ import {
   } from "react-native-responsive-screen";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ExerciseList from "../components/ExerciseList";
+import {ScrollView} from "react-native-virtualized-view"
 
 export default function Exercises() {
   const router = useRouter();
   const item = useLocalSearchParams();
-  const [exercises, setExercises] = useState(demoExercises)
-
+  const [exercises, setExercises] = useState([])
+  
   const getExercises = async(bodyParts) => {
     let data = await fetchExercisesByBodyPart(bodyParts)
     setExercises(data)
@@ -23,7 +24,7 @@ export default function Exercises() {
 
   useEffect(() => {
     if(item){
-        // getExercises(item.name)
+        getExercises(item.name)
     }
   },[item])
 
