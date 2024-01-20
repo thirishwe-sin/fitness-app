@@ -13,6 +13,9 @@ export default function _layout() {
       <Stack.Screen name='exercises' options={{
         presentation: 'fullScreenModal'
       }} />
+      <Stack.Screen name='exerciseDetail' options={{
+        presentation: 'modal'
+      }} />
     </Stack>
   )
 }
