@@ -14,7 +14,9 @@ export default function _layout() {
         presentation: 'fullScreenModal'
       }} />
       <Stack.Screen name='exerciseDetail' options={{
-        presentation: 'modal'
+        presentation: 'containedModal',
+        animation: 'slide_from_bottom',
+        gestureEnabled: 'true'
       }} />
     </Stack>
   )
