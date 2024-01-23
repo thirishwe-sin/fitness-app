@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, Image } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
 import {
   widthPercentageToDP as wp,
@@ -8,11 +8,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ImageSlider from "../components/ImageSlider";
 import BodyParts from "../components/BodyParts";
+import { StatusBar } from "expo-status-bar";
 
 export default function Home() {
   return (
     <SafeAreaView className="flex-1 bg-white flex space-y-5" edges={["top"]}>
-      <StatusBar style="dark" />
       <View className="flex-row justify-between items-center mx-5">
         <View className="space-y-2">
           <Text
@@ -49,6 +49,8 @@ export default function Home() {
       <View className="flex-1">
         <BodyParts />
       </View>
+      <StatusBar style="" />
+
     </SafeAreaView>
   );
 }

@@ -13,7 +13,7 @@ import {
 } from "react-native-responsive-screen";
 import { Image } from "expo-image";
 import AntDesign from "react-native-vector-icons/AntDesign";
-
+import Animated, { FadeInDown } from 'react-native-reanimated'
 export default function ExerciseDetail() {
   const item = useLocalSearchParams();
   console.log("items passed from list", item);
@@ -37,14 +37,16 @@ export default function ExerciseDetail() {
         <AntDesign name="closecircle" size={hp(4.5)} color="#f43f5e" />
       </TouchableOpacity>
 
-      <ScrollView className="mx-4 space-y-2 mt-3">
-        <Text
+      <ScrollView className="mx-4 space-y-2 mt-3" showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 60}}>
+        <Animated.Text
+          entering={FadeInDown.duration(300).springify()}
           className="font-semibold text-neutral-800 tracking-wide"
           style={{ fontSize: hp(3.5) }}
         >
           {item?.name}
-        </Text>
-        <Text
+        </Animated.Text>
+        <Animated.Text
+          entering={FadeInDown.delay(100).duration(300).springify()}
           style={{ fontSize: hp(2) }}
           className="text-neutral-700 tracking-wide"
         >
@@ -53,8 +55,9 @@ export default function ExerciseDetail() {
           >
             {item?.equipment}
           </Text>
-        </Text>
-        <Text
+        </Animated.Text>
+        <Animated.Text
+          entering={FadeInDown.delay(200).duration(300).springify()}
           style={{ fontSize: hp(2) }}
           className="text-neutral-700 tracking-wide"
         >
@@ -63,8 +66,9 @@ export default function ExerciseDetail() {
           >
             {item?.secondaryMuscles}
           </Text>
-        </Text>
-        <Text
+        </Animated.Text>
+        <Animated.Text
+          entering={FadeInDown.delay(300).duration(300).springify()}
           style={{ fontSize: hp(2) }}
           className="text-neutral-700 tracking-wide"
         >
@@ -73,17 +77,29 @@ export default function ExerciseDetail() {
           >
             {item?.target}
           </Text>
-        </Text>
+        </Animated.Text>
 
-        <Text
+        <Animated.Text
+          entering={FadeInDown.delay(400).duration(300).springify()}
           className="font-semibold text-neutral-800 tracking-wide"
           style={{ fontSize: hp(3) }}
         >
           Instructions
-        </Text>
-        {/* {
-          item?.instructions.split(',').map(())
-        } */}
+        </Animated.Text>
+        {
+          item?.instructions.split(',').map((instruction, index) => {
+            return(
+              <Animated.Text
+                entering={FadeInDown.delay((index+6)*100).duration(300).springify()} 
+                key={instruction}
+                style={{ fontSize: hp(1.7)}}
+                className="text-neutral-800"
+              >
+                {instruction}
+              </Animated.Text>
+            )
+          })
+        }
       </ScrollView>
     </View>
   );
