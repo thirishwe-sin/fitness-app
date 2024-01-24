@@ -1,7 +1,8 @@
 import { rapidApiKey } from "../constants"
-import axios from "axios"
+import axios from 'axios';
 
 export const baseUrl = 'https://exercisedb.p.rapidapi.com'
+export const localhost_url = 'http://127.0.0.1:8000/api';
 
 export const apiCall = async(url, params) => {
     try{
@@ -19,5 +20,24 @@ export const apiCall = async(url, params) => {
     }
     catch(err){
         console.log(err.message);
+    }
+}
+
+export const getRequest = async(url, params) => {
+    console.log(url);
+    try{
+        const response = await axios.get(url, {
+            params,
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+        console.log("response request",response);
+        return response;
+    }
+    catch(err){
+        console.log("api error",err);
+        throw err;
     }
 }
