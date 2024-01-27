@@ -49,7 +49,7 @@ export default function ImageSlider() {
   console.log(sliderImage);
   const modifiedResponse = sliderImage.map(item => ({
     ...item,
-    image: 'http://192.168.30.57:8000/storage/'+  item.image.replace('public/', ''),
+    image: 'http://192.168.30.57:8000/storage/'+  item.image.replace('public/', ''), //for image fetching
   }));
   // setSliderImages(modifiedResponse);
   console.log("response",modifiedResponse);
